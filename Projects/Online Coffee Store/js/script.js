@@ -40,6 +40,19 @@ function ready(){
         butttonClicked.parentElement.remove()
         updateCartTotal()
     }
+    document.getElementsByClassName('btn-purchase')[0].addEventListener('click',
+    purchaseClicked)
+    function purchaseClicked(){
+        alert('Thank You For Your Purhase')
+        var cartItems = document.getElementsByClassName('items-of-cart')[0]
+        while (cartItems.hasChildNodes()){
+            cartItems.removeChild(cartItems.firstChild)
+        }
+        updateCartTotal()
+    }
+
+
+
     var addToCartButtons = document.getElementsByClassName('shop-item')
     for (var i=0; i< addToCartButtons.length; i++){
         var button = addToCartButtons[i]
