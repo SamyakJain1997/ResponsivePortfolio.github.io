@@ -33,11 +33,12 @@ function ready(){
     console.log(removeCartItemButtons)
     for (var i=0; i< removeCartItemButtons.length; i++){
         var button = removeCartItemButtons[i]
-        button.addEventListener('click', function(event){
-            var butttonClicked = event.target
-            butttonClicked.parentElement.remove()
-            updateCartTotal()
-        })
+        button.addEventListener('click', removeCartItem)
+    }
+    function removeCartItem(event){
+        var butttonClicked = event.target
+        butttonClicked.parentElement.remove()
+        updateCartTotal()
     }
     var addToCartButtons = document.getElementsByClassName('shop-item')
     for (var i=0; i< addToCartButtons.length; i++){
@@ -53,7 +54,7 @@ function ready(){
         var imageSrc = shopItem.getElementsByClassName('cart-image')[0].src
         console.log(title,price,imageSrc)
         addItemToCart(title,price,imageSrc)
-
+        updateCartTotal()
     }
     var addToCartSmallButtons = document.getElementsByClassName('fa-shopping-cart')
     for (var i=0; i< addToCartSmallButtons.length; i++){
@@ -69,6 +70,7 @@ function ready(){
         var imageSrcSmall = shopItem1.getElementsByClassName('cart-image-small')[0].src
         console.log(title1,price1,imageSrcSmall)
         addItemtoCart(title1,price1,imageSrcSmall)
+        updateCartTotal()
 
     }
     function addItemToCart(title,price,imageSrc){
@@ -76,16 +78,50 @@ function ready(){
         cartRow.classList.add('items-of-cart')
         cartRow.innerText = title
         var cartItems = document.getElementsByClassName('items-of-cart')[0]
-        var cartRowContent = `<div class="cart-item">
-        <span class="fas fa-times btns-danger"></span>
-        <img class="cart-image" src="images/cart-item-1.png" alt="">
-        <div class="content">
-            <h3>cart item 01</h3>
-            <div class="price">₹15.00/-</div>
+        var cartItemsNames = cartItems.getElementsByClassName('shop-item-title')
+        for (var i = 0; i< cartItemsNames.length; i++){
+           if(cartItemsNames[i].innerText == title){
+               alert('This item has already been added to the Cart')
+               return
+           }
+        }
+        var cartRowContent = `
+        <div class="cart-item">
+            <span class="fas fa-times btns-danger"></span>
+            <img class="cart-image" src="${imageSrc}" alt="">
+            <div class="content">
+            <h3>${title}</h3>
+            <div class="price">${price}</div>
         </div>
     </div>`
         cartRow.innerHTML = cartRowContent
         cartItems.append(cartRow)
+        cartRow.getElementsByClassName('btns-danger')[0].addEventListener('click', removeCartItem)
+    }
+    function addItemtoCart(title1,price1,imageSrcSmall){
+        var cartRow= document.createElement('div')
+        cartRow.classList.add('items-of-cart')
+        cartRow.innerText = title1
+        var cartItems = document.getElementsByClassName('items-of-cart')[0]
+        var cartItemsNames1 = cartItems.getElementsByClassName('')
+        for (var i = 0; i< cartItemsNames1.length; i++){
+           if(cartItemsNames1[i].innerText == title1){
+               alert('This item has already been added to the Cart')
+               return
+           }
+        }
+        var cartRowContent = `
+        <div class="cart-item">
+            <span class="fas fa-times btns-danger"></span>
+            <img class="cart-image" src="${imageSrcSmall}" alt="">
+            <div class="content">
+            <h3>${title1}</h3>
+            <div class="price">${price1}</div>
+        </div>
+    </div>`
+        cartRow.innerHTML = cartRowContent
+        cartItems.append(cartRow)
+        cartRow.getElementsByClassName('btns-danger')[0].addEventListener('click', removeCartItem)
     }
 
     function updateCartTotal() {
