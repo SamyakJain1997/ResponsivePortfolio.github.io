@@ -60,7 +60,8 @@ section {
   text-transform: uppercase;
 }
 
-.btn {
+.btn,
+.cart-total {
   margin-top: 1rem;
   display: inline-block;
   padding: 0.9rem 3rem;
@@ -119,7 +120,7 @@ section {
   display: none;
 }
 
-.header .search-form {
+.search-form {
   position: absolute;
   top: 115%;
   right: 7%;
@@ -132,11 +133,11 @@ section {
   transform-origin: top;
 }
 
-.header .search-form.active {
+.search-form.active {
   transform: scaleY(1);
 }
 
-.header .search-form input {
+.search-form input {
   height: 100%;
   width: 100%;
   font-size: 1.6rem;
@@ -145,18 +146,18 @@ section {
   text-transform: none;
 }
 
-.header .search-form label {
+.search-form label {
   cursor: pointer;
   font-size: 2.2rem;
   margin-right: 1.5rem;
   color: var(--black);
 }
 
-.header .search-form label:hover {
+.search-form label:hover {
   color: var(--main-color);
 }
 
-.header .cart-items-container {
+.cart-items-container {
   position: absolute;
   top: 100%;
   right: -100%;
@@ -166,7 +167,7 @@ section {
   padding: 0 1.5rem;
 }
 
-.header .cart-items-container.active {
+.cart-items-container.active {
   right: 0;
 }
 
@@ -191,11 +192,11 @@ section {
   color: var(--main-color);
 }
 
-.header .cart-items-container .cart-item img {
-  height: 7rem;
+.cart-image {
+  height: 5rem;
 }
 
-.header .cart-items-container .cart-item .content h3 {
+.header .cart .cart-items-container .cart-item .content h3 {
   font-size: 2rem;
   color: var(--black);
   padding-bottom: 0.5rem;
